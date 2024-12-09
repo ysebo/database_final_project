@@ -1,26 +1,30 @@
 package viewer;
 
 import controller.Controller;
+import controller.LoginController;
+import model.Model;
 
 import javax.swing.JFrame;
 import java.awt.CardLayout;
 
 public class Viewer {
-    private Controller controller;
     private CardLayout cardLayout;
     private DoctorPanel doctorPanel;
     private PatientPanel patientPanel;
     private JFrame frame;
     private LoginPanel loginPanel;
     private RegisterPanel registerPanel;
+    private Model model;
 
     public Viewer() {
-        controller = new Controller();
+        Controller controller = new Controller();
+        loginPanel = new LoginPanel(this );
+        LoginController loginController = new LoginController(this ,loginPanel );
         cardLayout = new CardLayout();
         doctorPanel = new DoctorPanel();
         patientPanel = new PatientPanel();
-        loginPanel = new LoginPanel();
-        registerPanel = new RegisterPanel();
+        registerPanel = new RegisterPanel(this);
+
         frame = new JFrame("Hospital Management System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 800);
@@ -49,5 +53,8 @@ public class Viewer {
     }
     public void showRegisterPanel() {
         cardLayout.show(frame.getContentPane(), "registerPanel");
+    }
+    public LoginPanel getLoginPanel() {
+        return loginPanel;
     }
 }

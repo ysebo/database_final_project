@@ -1,6 +1,7 @@
 package viewer;
 
 import controller.LoginController;
+import model.User;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -19,11 +20,17 @@ public class LoginPanel extends JPanel {
     private JPasswordField passwordField;
     private JButton loginButton , registerButton;
     private Image background;
+    private Viewer viewer;
+    private User userModel;
     private LoginController loginController;
-    public LoginPanel() {
+    public LoginPanel(Viewer viewer) {
+        this.viewer = viewer;
+        this.userModel = new User();
+        loginController = new LoginController( viewer, this);
         File backgroundImage = new File("src/main/resources/background.jpg");
         JLabel usernameLabel = new JLabel("Email:");
         emailField = new JTextField();
+
         JLabel passwordLabel = new JLabel("Password:");
         passwordField = new JPasswordField();
         loginButton = new JButton("Login");
@@ -58,6 +65,9 @@ public class LoginPanel extends JPanel {
     public String getEmail() {
         return emailField.getText();
     }
+    public void setLoginController(LoginController controller) {
+        this.loginController = controller;
+    }
 
     public String getPassword() {
         return new String(passwordField.getPassword());
@@ -65,5 +75,24 @@ public class LoginPanel extends JPanel {
 
     public void showErrorMessage(String message) {
         JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    public  void handleLogin() {
+
+        String email = getEmail();
+        String password = getPassword();
+
+        String role = userModel.authenticate(email, password);
+        if (role == null) {
+            showErrorMessage("Invalid credentials. Please try again.");
+            return;
+        }
+
+        userModel.setRole(role);
+        if ("doctor".equals(role)) {
+            viewer.showDoctorPanel();
+        } else if ("patient".equals(role)) {
+            viewer.showPatientPanel();
+
+        }
     }
 }
