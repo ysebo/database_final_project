@@ -41,7 +41,7 @@ public class RegisterPanel extends JPanel {
         emailField = new JTextField(20);
         passwordLabel = new JLabel("Password:");
         roleLabel = new JLabel("Role:");
-        roleComboBox = new JComboBox<>(new String[]{"doctor", "patient"});
+        roleComboBox = new JComboBox<>(new String[]{"Doctor", "Patient"});
         registerButton = new JButton("Register");
         loginButton = new JButton("Login");
         setLayout(null);

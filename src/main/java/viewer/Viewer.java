@@ -1,8 +1,6 @@
 package viewer;
 
 import controller.LoginController;
-import model.Model;
-
 import javax.swing.JFrame;
 import java.awt.CardLayout;
 
@@ -13,7 +11,6 @@ public class Viewer {
     private JFrame frame;
     private LoginPanel loginPanel;
     private RegisterPanel registerPanel;
-    private Model model;
 
     public Viewer() {
         loginPanel = new LoginPanel(this );

@@ -31,6 +31,7 @@ public class PatientPanel extends JPanel {
         centerPanel.add(scrollPane, BorderLayout.CENTER);
 
         add(topPanel, BorderLayout.NORTH);
+
         add(centerPanel, BorderLayout.CENTER);
     }
     public JButton getViewInfoButton() {
