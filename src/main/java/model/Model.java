@@ -15,5 +15,7 @@ public class Model {
     }
 
 
-
+    public void showLoginPanel() {
+        viewer.showLoginPanel();
+    }
 }

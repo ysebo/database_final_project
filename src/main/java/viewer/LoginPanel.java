@@ -4,14 +4,20 @@ import controller.LoginController;
 import model.User;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.border.AbstractBorder;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Insets;
 import java.io.File;
 import java.io.IOException;
 
@@ -28,26 +34,38 @@ public class LoginPanel extends JPanel {
         this.userModel = new User();
         loginController = new LoginController( viewer, this);
         File backgroundImage = new File("src/main/resources/background.jpg");
-        JLabel usernameLabel = new JLabel("Email:");
+        JLabel emailLabel = new JLabel("Email:");
         emailField = new JTextField();
 
         JLabel passwordLabel = new JLabel("Password:");
         passwordField = new JPasswordField();
         loginButton = new JButton("Login");
         registerButton = new JButton("Register");
-        usernameLabel.setBounds(350, 300, 100, 30);
+        emailLabel.setBounds(350, 300, 100, 30);
         emailField.setBounds(450, 300, 200, 30);
         passwordLabel.setBounds(350, 350, 100, 30);
         passwordField.setBounds(450, 350, 200, 30);
-        loginButton.setBounds(450, 400, 100, 30);
-        registerButton.setBounds(350, 400, 100, 30);
+        loginButton.setBounds(529, 400, 100, 30);
+        registerButton.setBounds(865, 38, 100, 30);
+        registerButton.setFont(new Font("Arial", Font.BOLD, 14));
+        registerButton.setForeground(Color.WHITE);
+        registerButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+        registerButton.setBackground(new Color(44, 62, 80));
+
+
+        loginButton.setFont(new Font("Arial", Font.BOLD, 14));
+        loginButton.setForeground(Color.WHITE);
+        loginButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+        loginButton.setBackground(new Color(44, 62, 80));
+
         setLayout(null);
-        add(usernameLabel);
+        add(emailLabel);
         add(emailField);
         add(passwordLabel);
         add(passwordField);
         add(loginButton);
         add(registerButton);
+
         loginButton.setActionCommand("Login");
         loginButton.addActionListener(loginController);
         registerButton.setActionCommand("Register");

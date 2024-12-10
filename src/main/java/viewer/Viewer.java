@@ -1,6 +1,5 @@
 package viewer;
 
-import controller.Controller;
 import controller.LoginController;
 import model.Model;
 
@@ -17,7 +16,6 @@ public class Viewer {
     private Model model;
 
     public Viewer() {
-        Controller controller = new Controller();
         loginPanel = new LoginPanel(this );
         LoginController loginController = new LoginController(this ,loginPanel );
         cardLayout = new CardLayout();

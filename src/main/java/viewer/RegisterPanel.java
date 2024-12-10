@@ -2,75 +2,87 @@ package viewer;
 
 import controller.RegisterController;
 
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 
 public class RegisterPanel extends JPanel {
     private JTextField nameField;
     private JTextField emailField;
     private JPasswordField passwordField;
     private JComboBox<String> roleComboBox;
-    private JButton registerButton;
+    private JButton registerButton, loginButton;
     private RegisterController registerController;
+    private Image background;
+    private JLabel nameLabel, emailLabel, passwordLabel, roleLabel;
+
     public RegisterPanel(Viewer viewer) {
-        registerController = new RegisterController(this);
-        setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-
-        JLabel nameLabel = new JLabel("Name:");
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        add(nameLabel, gbc);
-
+        File backgroundImage = new File("src/main/resources/background.jpg");
+        try {
+            background = ImageIO.read(backgroundImage);
+        } catch (IOException e) {
+            System.out.println("Error loading image");
+        }
+        registerController = new RegisterController(viewer, this);
+        nameLabel = new JLabel("Name:");
         nameField = new JTextField(20);
-        gbc.gridx = 1;
-        add(nameField, gbc);
-
-        JLabel emailLabel = new JLabel("Email:");
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        add(emailLabel, gbc);
-
+        emailLabel = new JLabel("Email:");
         emailField = new JTextField(20);
-        gbc.gridx = 1;
-        add(emailField, gbc);
-
-        JLabel passwordLabel = new JLabel("Password:");
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        add(passwordLabel, gbc);
-
-        passwordField = new JPasswordField(20);
-        gbc.gridx = 1;
-        add(passwordField, gbc);
-
-        JLabel roleLabel = new JLabel("Role:");
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        add(roleLabel, gbc);
-
+        passwordLabel = new JLabel("Password:");
+        roleLabel = new JLabel("Role:");
         roleComboBox = new JComboBox<>(new String[]{"doctor", "patient"});
-        gbc.gridx = 1;
-        add(roleComboBox, gbc);
-
         registerButton = new JButton("Register");
-        gbc.gridx = 0;
-        gbc.gridy = 4;
-        gbc.gridwidth = 2;
-        gbc.anchor = GridBagConstraints.CENTER;
-        add(registerButton, gbc);
+        loginButton = new JButton("Login");
+        setLayout(null);
+        nameLabel.setBounds(350, 300, 100, 25);
+        nameField.setBounds(450, 300, 200, 25);
+        emailLabel.setBounds(350, 350, 100, 25);
+        emailField.setBounds(450, 350, 200, 25);
+        passwordLabel.setBounds(350, 400, 100, 25);
+        passwordField = new JPasswordField(20);
+        passwordField.setBounds(450, 400, 200, 25);
+        roleLabel.setBounds(350, 450, 100, 25);
+        roleComboBox.setBounds(450, 450, 200, 25);
+        registerButton.setBounds(538, 500, 100, 30);
+        loginButton.setBounds(865, 38, 100, 30);
+
+        registerButton.setFont(new Font("Arial", Font.BOLD, 14));
+        registerButton.setForeground(Color.WHITE);
+        registerButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+        registerButton.setBackground(new Color(44, 62, 80));
+
+
+        loginButton.setFont(new Font("Arial", Font.BOLD, 14));
+        loginButton.setForeground(Color.WHITE);
+        loginButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+        loginButton.setBackground(new Color(44, 62, 80));
+
+        add(nameLabel);
+        add(nameField);
+        add(emailLabel);
+        add(emailField);
+        add(passwordLabel);
+        add(passwordField);
+        add(roleLabel);
+        add(roleComboBox);
+        add(registerButton);
+        add(loginButton);
         registerButton.addActionListener(registerController);
+        loginButton.addActionListener(registerController);
 
     }
+
     public String getName() {
         return nameField.getText().trim();
     }
@@ -83,12 +95,19 @@ public class RegisterPanel extends JPanel {
         return new String(passwordField.getPassword());
     }
 
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
+    }
+
     public String getRole() {
         return roleComboBox.getSelectedItem().toString();
     }
+
     public JButton getRegisterButton() {
         return registerButton;
     }
+
     public JTextField getNameField() {
         return nameField;
     }
