@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class LoginController implements ActionListener {
     private Model model ;
-    LoginPanel loginPanel;
+    private LoginPanel loginPanel;
     public LoginController(Viewer viewer, LoginPanel loginPanel) {
         this.loginPanel = loginPanel;
         model = new Model(viewer);

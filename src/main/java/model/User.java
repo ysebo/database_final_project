@@ -32,24 +32,6 @@ public class User {
         }
         return null;
     }
-    public boolean register(String name, String email, String password, String role) {
-        try {
-            Database database = new Database();
-            Connection connection = database.getConnection();
-            String query = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, name);
-            statement.setString(2, email);
-            statement.setString(3, password);
-            statement.setString(4, role);
-
-            int rowsInserted = statement.executeUpdate();
-            return rowsInserted > 0;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
     public String getRole() {
         return role;
     }
