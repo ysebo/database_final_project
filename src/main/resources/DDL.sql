@@ -91,7 +91,8 @@ VALUES ('Aman', 'Nursbekov', '1990-01-01', 'Male', '987-654-3210', '123-456-7890
 ('Erdan', 'Uuulu', '1985-02-15', 'Male', '555-555-5555', '987-654-3210', '456 Elm St');
 
 INSERT INTO MedicalRecord (MedicalRecordID, PatientID, RecordDate, Diagnosis, Treatment, Medication, Allergies, Notes)
-VALUES (1, 1, ' December 5', 'Hypertension', 'Lisinopril', 'None', 'Blood pressure measurement',
-        'Patient advised to monitor BP daily'),
+VALUES (1, 1, ' December 5', 'Hypertension', 'Mukaltin ili Koydun mayu', 'None', 'Blood pressure measurement',
+        'Patient advised to monitor diseases daily'),
        (2, 2, '12 January', 'Common Cold', 'Paracetamol', 'None', 'None', 'Rest and hydration recommended');
-
+INSERT INTO Appointment (PatientID, DoctorID, AppointmentDate, Reason, Status)
+VALUES (1, 1    , '2024-12-11 10:00:00', 'Routine Checkup', 'Scheduled');

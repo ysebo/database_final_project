@@ -16,7 +16,7 @@ public class Viewer {
         loginPanel = new LoginPanel(this );
         LoginController loginController = new LoginController(this ,loginPanel );
         cardLayout = new CardLayout();
-        doctorPanel = new DoctorPanel();
+        doctorPanel = new DoctorPanel(this , loginPanel);
         patientPanel = new PatientPanel();
         registerPanel = new RegisterPanel(this);
 

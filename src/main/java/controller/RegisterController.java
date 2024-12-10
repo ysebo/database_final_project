@@ -10,11 +10,9 @@ import java.awt.event.ActionListener;
 
 public class RegisterController implements ActionListener {
     private RegisterPanel registerPanel;
-    private Database database;
     private Model model ;
     public RegisterController (Viewer viewer , RegisterPanel registerPanel) {
         this.registerPanel = registerPanel;
-        database = new Database();
         model = new Model(viewer);
     }
     public void actionPerformed(ActionEvent event) {
