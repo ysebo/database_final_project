@@ -1,6 +1,5 @@
 package viewer;
 
-import controller.LoginController;
 import javax.swing.JFrame;
 import java.awt.CardLayout;
 
@@ -14,10 +13,9 @@ public class Viewer {
 
     public Viewer() {
         loginPanel = new LoginPanel(this );
-        LoginController loginController = new LoginController(this ,loginPanel );
         cardLayout = new CardLayout();
         doctorPanel = new DoctorPanel(this , loginPanel);
-        patientPanel = new PatientPanel();
+        patientPanel = new PatientPanel(this , loginPanel);
         registerPanel = new RegisterPanel(this);
 
         frame = new JFrame("Hospital Management System");
@@ -38,6 +36,7 @@ public class Viewer {
     public void showDoctorPanel() {
         cardLayout.show(frame.getContentPane(), "doctorPanel");
     }
+
 
     public void showPatientPanel() {
         cardLayout.show(frame.getContentPane(), "patientPanel");
