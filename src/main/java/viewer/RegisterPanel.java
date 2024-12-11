@@ -2,7 +2,6 @@ package viewer;
 
 import controller.RegisterController;
 import db.Database;
-import model.User;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -23,13 +22,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 public class RegisterPanel extends JPanel {
-    private JTextField nameField , emailField , lastNameField;
+    private JTextField nameField, emailField, lastNameField;
     private JPasswordField passwordField;
     private JComboBox<String> roleComboBox;
     private JButton registerButton, loginButton;
     private RegisterController registerController;
     private Image background;
-    private JLabel nameLabel, emailLabel, passwordLabel, roleLabel , lastNameLabel;
+    private JLabel nameLabel, emailLabel, passwordLabel, roleLabel, lastNameLabel;
 
     public RegisterPanel(Viewer viewer) {
         File backgroundImage = new File("src/main/resources/background.jpg");
@@ -96,6 +95,7 @@ public class RegisterPanel extends JPanel {
     public String getName() {
         return nameField.getText().trim();
     }
+
     public String getLastName() {
         return lastNameField.getText().trim();
     }
@@ -132,6 +132,7 @@ public class RegisterPanel extends JPanel {
     public JPasswordField getPasswordField() {
         return passwordField;
     }
+
     public JTextField getLastNameField() {
         return lastNameField;
     }
@@ -155,7 +156,7 @@ public class RegisterPanel extends JPanel {
             Database database = new Database();
             Connection connection = database.getConnection();
             String query = "INSERT INTO users (FirstName, LastName, email, password, role) VALUES (?, ?, ?, ? , ?)";
-            PreparedStatement usersStatement = connection.prepareStatement(query , PreparedStatement.RETURN_GENERATED_KEYS);
+            PreparedStatement usersStatement = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
             usersStatement.setString(1, name);
             usersStatement.setString(2, lastName);
             usersStatement.setString(3, email);
@@ -194,7 +195,7 @@ public class RegisterPanel extends JPanel {
                     patientStmt.setString(1, name);
                     patientStmt.setString(2, lastName);
                     patientStmt.setString(3, "2005-01-01");
-                    patientStmt.setString(4, "Other");
+                    patientStmt.setString(4, "Non-binary");
 
                     int patientRowsInserted = patientStmt.executeUpdate();
                     if (patientRowsInserted > 0) {
@@ -219,6 +220,7 @@ public class RegisterPanel extends JPanel {
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
     private void resetFields() {
         getNameField().setText("");
         getEmailField().setText("");

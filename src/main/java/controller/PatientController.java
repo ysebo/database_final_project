@@ -41,7 +41,8 @@ public class PatientController implements ActionListener {
                 updateAppointmentTable(appointments, new String[]{"Appointment ID", "Doctor Name", "Date", "Reason"});
                 break;
             case "Book_Appointment":
-                patientPanel.showAppointmentBookingFields();
+                model.showAppointmentPanel();
+                System.out.println("Book Appointment");
                 break;
         }
 

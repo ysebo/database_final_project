@@ -1,6 +1,7 @@
 package model;
 
 import db.Database;
+import viewer.PatientPanel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Patient {
+
+    private PatientPanel patientPanel;
     public List<Object[]> viewPatientInfo(int patientId) {
+
         List<Object[]> patientData = new ArrayList<>();
         try {
             Database database = new Database();

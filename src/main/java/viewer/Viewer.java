@@ -10,14 +10,14 @@ public class Viewer {
     private JFrame frame;
     private LoginPanel loginPanel;
     private RegisterPanel registerPanel;
-
+    private AppointmentPanel appointmentPanel;
     public Viewer() {
         loginPanel = new LoginPanel(this );
         cardLayout = new CardLayout();
         doctorPanel = new DoctorPanel(this , loginPanel);
         patientPanel = new PatientPanel(this , loginPanel);
         registerPanel = new RegisterPanel(this);
-
+        appointmentPanel = new AppointmentPanel(this ,loginPanel);
         frame = new JFrame("Hospital Management System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 800);
@@ -27,6 +27,7 @@ public class Viewer {
         frame.add(doctorPanel, "doctorPanel");
         frame.add(loginPanel, "loginPanel");
         frame.add(registerPanel, "registerPanel");
+        frame.add(appointmentPanel, "appointmentPanel");
         frame.setVisible(true);
         frame.setResizable(false);
         showLoginPanel();
@@ -35,6 +36,9 @@ public class Viewer {
 
     public void showDoctorPanel() {
         cardLayout.show(frame.getContentPane(), "doctorPanel");
+    }
+    public void showAppointmentPanel() {
+        cardLayout.show(frame.getContentPane(), "appointmentPanel");
     }
 
 

@@ -18,6 +18,12 @@ public class Model {
     public void showLoginPanel() {
         viewer.showLoginPanel();
     }
+    public void showPatientPanel() {
+        viewer.showPatientPanel();
+    }
 
 
+    public void showAppointmentPanel() {
+        viewer.showAppointmentPanel();
+    }
 }
