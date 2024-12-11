@@ -5,10 +5,10 @@ import viewer.Viewer;
 
 public class Model {
     private LoginPanel loginPanel;
-    private User userModel;
     private Viewer viewer;
     public Model(Viewer viewer) {
         this.viewer = viewer;
+
     }
     public void showRegisterPanel() {
         viewer.showRegisterPanel();
@@ -17,5 +17,13 @@ public class Model {
 
     public void showLoginPanel() {
         viewer.showLoginPanel();
+    }
+    public void showPatientPanel() {
+        viewer.showPatientPanel();
+    }
+
+
+    public void showAppointmentPanel() {
+        viewer.showAppointmentPanel();
     }
 }

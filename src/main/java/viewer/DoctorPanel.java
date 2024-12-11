@@ -1,11 +1,14 @@
 package viewer;
 
+import controller.DoctorController;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
@@ -15,9 +18,13 @@ public class DoctorPanel extends JPanel {
     private JButton manageAppointmentsButton;
     private JTextField searchField;
     private JTable patientTable;
-    public DoctorPanel() {
+    private JPanel topPanel, centerPanel;
+    private JScrollPane scrollPane;
+    private DoctorController doctorController;
+    public DoctorPanel(Viewer viewer , LoginPanel loginPanel) {
         setLayout(new BorderLayout());
-        JPanel topPanel = new JPanel();
+        topPanel = new JPanel();
+        doctorController = new DoctorController(viewer , this , loginPanel);
         topPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         searchField = new JTextField(20);
         searchPatientButton = new JButton("Search");
@@ -28,32 +35,26 @@ public class DoctorPanel extends JPanel {
         topPanel.add(searchPatientButton);
         topPanel.add(viewPatientsButton);
         topPanel.add(manageAppointmentsButton);
-        JPanel centerPanel = new JPanel();
+        centerPanel = new JPanel();
         centerPanel.setLayout(new BorderLayout());
         patientTable = new JTable();
-        JScrollPane scrollPane = new JScrollPane(patientTable);
+        scrollPane = new JScrollPane(patientTable);
         centerPanel.add(scrollPane, BorderLayout.CENTER);
 
         add(topPanel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);
+        searchPatientButton.setActionCommand("Search");
+        searchPatientButton.addActionListener(doctorController);
+        viewPatientsButton.addActionListener(doctorController);
+        viewPatientsButton.setActionCommand("View_Patients");
+        manageAppointmentsButton.addActionListener(doctorController);
+        manageAppointmentsButton.setActionCommand("Manage_Appointments");
     }
-    public JButton getViewPatientsButton() {
-        return viewPatientsButton;
-    }
-
-    public JButton getSearchPatientButton() {
-        return searchPatientButton;
-    }
-
-    public JButton getManageAppointmentsButton() {
-        return manageAppointmentsButton;
-    }
-
     public String getSearchQuery() {
-        return searchField.getText();
+        return searchField.getText().trim();
     }
 
     public void setPatientTableData(Object[][] data, String[] columnNames) {
-        patientTable.setModel(new javax.swing.table.DefaultTableModel(data, columnNames));
+        patientTable.setModel(new DefaultTableModel(data, columnNames));
     }
 }

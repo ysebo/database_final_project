@@ -1,5 +1,7 @@
 package viewer;
 
+import controller.PatientController;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -12,14 +14,17 @@ public class PatientPanel extends JPanel {
     private JButton viewAppointmentsButton;
     private JButton bookAppointmentButton;
     private JTable appointmentsTable;
-    public PatientPanel() {
-        setLayout(new BorderLayout());
+    private PatientController patientController;
 
+    public PatientPanel(Viewer viewer, LoginPanel loginPanel) {
+        setLayout(new BorderLayout());
+        patientController = new PatientController(viewer, this, loginPanel);
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         viewInfoButton = new JButton("View My Information");
         viewAppointmentsButton = new JButton("View Appointments");
         bookAppointmentButton = new JButton("Book Appointment");
+
         topPanel.add(viewInfoButton);
         topPanel.add(viewAppointmentsButton);
         topPanel.add(bookAppointmentButton);
@@ -33,7 +38,14 @@ public class PatientPanel extends JPanel {
         add(topPanel, BorderLayout.NORTH);
 
         add(centerPanel, BorderLayout.CENTER);
+        viewInfoButton.setActionCommand("My_Info");
+        viewInfoButton.addActionListener(patientController);
+        viewAppointmentsButton.setActionCommand("View_Appointments");
+        viewAppointmentsButton.addActionListener(patientController);
+        bookAppointmentButton.addActionListener(patientController);
+        bookAppointmentButton.setActionCommand("Book_Appointment");
     }
+
     public JButton getViewInfoButton() {
         return viewInfoButton;
     }

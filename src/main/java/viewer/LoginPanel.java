@@ -25,15 +25,15 @@ public class LoginPanel extends JPanel {
     private Image background;
     private Viewer viewer;
     private User userModel;
+    int userId;
     private LoginController loginController;
     public LoginPanel(Viewer viewer) {
         this.viewer = viewer;
-        this.userModel = new User();
         loginController = new LoginController( viewer, this);
         File backgroundImage = new File("src/main/resources/background.jpg");
         JLabel emailLabel = new JLabel("Email:");
         emailField = new JTextField();
-
+        userModel = new User();
         JLabel passwordLabel = new JLabel("Password:");
         passwordField = new JPasswordField();
         loginButton = new JButton("Login");
@@ -95,19 +95,25 @@ public class LoginPanel extends JPanel {
 
         String email = getEmail();
         String password = getPassword();
-
-        String role = userModel.authenticate(email, password);
-        if (role == null) {
+        User user1 = userModel.authenticate(email, password);
+        if (user1 == null) {
             showErrorMessage("Invalid credentials. Please try again.");
             return;
         }
-
-        userModel.setRole(role);
+        String role = user1.getRole();
+        userId = user1.getUserId();
+        setUserId(userId);
         if ("doctor".equals(role)) {
             viewer.showDoctorPanel();
         } else if ("patient".equals(role)) {
             viewer.showPatientPanel();
 
         }
+    }
+    public int getUserId() {
+        return userId;
+    }
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
