@@ -2,3 +2,5 @@
 .idea
 *.log
 *.class
+*.xml
+*.iml
