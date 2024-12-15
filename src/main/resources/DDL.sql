@@ -188,8 +188,7 @@ insert into users (firstname, lastname, email, password, role) values ('Manda', 
 insert into users (firstname, lastname, email, password, role) values ('Verene', 'Giampietro', 'vgiampietro2o@live.com', '8.@@4%', 'doctor');
 insert into users (firstname, lastname, email, password, role) values ('Gawen', 'Walshe', 'gwalshe2p@yale.edu', 'uDbeBX', 'patient');
 insert into users (firstname, lastname, email, password, role) values ('Sigfried', 'Jevon', 'sjevon2q@freewebs.com', 'v+mHOS`', 'doctor');
-insert into users (firstname, lastname, email, password, role) values ('Trstram', 'Chestney', 'tchestney2r@simplemachines.org', '"sil''U{T+zJ', 'patient');
-
+insert into users (firstname, lastname, email, password, role) values ('Zhavlon', 'Khamidov', 'zhavlon.khamidov@alatoo.edu.kg', 'MrZhavlon', 'patient');
 insert into Doctor (FirstName, LastName, ContactInfo, DepartmentID, Availability) values ('Sebastian', 'Grazier', '760-883-3266', 6, 'Limited Availability');
 insert into Doctor (FirstName, LastName, ContactInfo, DepartmentID, Availability) values ('Tedmund', 'Learmonth', '648-694-3080', 5, 'Not Available');
 insert into Doctor (FirstName, LastName, ContactInfo, DepartmentID, Availability) values ('Cully', 'Madrell', '593-518-6212', 7, 'Limited Availability');
