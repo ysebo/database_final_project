@@ -38,8 +38,7 @@ public class AppointmentController implements ActionListener {
                 String reason = appointmentPanel.getReason();
                 patientService.bookAppointment(patientId,doctorId, appointmentDate, reason);
                 appointmentPanel.showAppointmentDialog();
-                appointmentPanel.clearAllFields();
-                break;
+                appointmentPanel.clearAllFields();                break;
             case "Back":
                 System.out.println("appointment back");
                 model.showPatientPanel();
